@@ -1,0 +1,26 @@
+{
+  "name": "jonesiscoding/base-console",
+  "description": "",
+  "keywords": [
+    "command",
+    "symfony",
+    "console",
+    "helper"
+  ],
+  "homepage": "https://github.com/jonesiscoding/base-console",
+  "version": "1.0",
+  "authors": [
+    {
+      "name": "Aaron M Jones",
+      "homepage": "http://www.jonesiscoding.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "DevCoding\\Command\\Base\\": "src"
+    }
+  },
+  "require": {
+    "symfony/console": "^4.4"
+  }
+}
