@@ -60,9 +60,7 @@ abstract class AbstractConsole extends Command
       }
     }
 
-    exec( $tputPath . ' cols', $output, $retval );
-
-    return ( $retval === 0 && !empty( $output ) ) ? trim( $output ) : $default;
+    return $this->getShellExec( $tputPath . ' cols', $default );
   }
 
   /**
@@ -80,16 +78,20 @@ abstract class AbstractConsole extends Command
       throw new \Exception( "Not here you don't, Buster." );
     }
 
-    exec( 'which ' . $bin,$output, $retval );
-    if( $retval !== 0 || !is_file( trim( $output ) ) )
+    $output = $this->getShellExec( 'which ' . $bin );
+    if( !$output || !is_file( trim( $output ) ) )
     {
       throw new \Exception( sprintf( 'Could not locate "%s" binary.', $bin ) );
     }
-    else
-    {
-      return trim( $output );
-    }
+
+    return $output;
   }
+
+  protected function getShellExec( $cmd, $default = null )
+  {
+    return ( $x = shell_exec( $cmd ) && !empty( $x ) ) ? trim( $x ) : $default;
+  }
+
 
   /**
    * Checks if the given string is alphanumeric.

@@ -36,11 +36,14 @@ class AbstractMacConsole extends AbstractConsole
   {
     if( empty( $this->_user ) )
     {
-      if( $user = shell_exec( 'id -un' ) )
+      try
       {
-        $this->_user = trim( $user );
+        if( $bin = $this->getBinaryPath( 'id' ) )
+        {
+          $this->setUser( $this->getShellExec( $bin . ' -in' ) );
+        }
       }
-      else
+      catch( \Exception $e )
       {
         return null;
       }
