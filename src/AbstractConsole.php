@@ -89,7 +89,7 @@ abstract class AbstractConsole extends Command
 
   protected function getShellExec( $cmd, $default = null )
   {
-    return ( $x = shell_exec( $cmd ) && !empty( $x ) ) ? trim( $x ) : $default;
+    return ( ( $x = shell_exec( $cmd ) ) && !empty( $x ) ) ? trim( $x ) : $default;
   }
 
 
