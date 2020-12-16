@@ -82,7 +82,12 @@ abstract class AbstractConsole extends Command
    */
   protected function isPhar()
   {
-    return strlen( \Phar::running() ) > 0 ? true : false;
+    return strlen( \Phar::running() ) > 0;
+  }
+
+  protected function isSessionSsh()
+  {
+    return (getenv('SSH_CLIENT') || getenv('SSH_TTY'));
   }
 
   /**
