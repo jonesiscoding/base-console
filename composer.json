@@ -9,7 +9,7 @@
   ],
   "license": "MIT",
   "homepage": "https://github.com/jonesiscoding/base-console",
-  "version": "1.0.4",
+  "version": "4.4",
   "authors": [
     {
       "name": "Aaron M Jones",
@@ -22,6 +22,7 @@
     }
   },
   "require": {
-    "symfony/console": "^4.4"
+    "symfony/console": "^4.4",
+    "symfony/process": "^4.4"
   }
 }

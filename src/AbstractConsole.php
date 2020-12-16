@@ -5,6 +5,7 @@
 
 namespace DevCoding\Command\Base;
 
+use DevCoding\Command\Base\Traits\ShellTrait;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -17,6 +18,8 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 abstract class AbstractConsole extends Command
 {
+  use ShellTrait;
+
   const EXIT_SUCCESS = 0;
   const EXIT_ERROR   = 1;
 
@@ -62,36 +65,6 @@ abstract class AbstractConsole extends Command
 
     return $this->getShellExec( $tputPath . ' cols', $default );
   }
-
-  /**
-   * Attempts to find a binary path from the given string.  Command names may ONLY contain alphanumeric characters.
-   *
-   * @param string $bin
-   *
-   * @return string       The full path to the binary.
-   * @throws \Exception
-   */
-  protected function getBinaryPath( $bin )
-  {
-    if( !$this->isAlphaNumeric( $bin ) )
-    {
-      throw new \Exception( "Not here you don't, Buster." );
-    }
-
-    $output = $this->getShellExec( 'which ' . $bin );
-    if( !$output || !is_file( trim( $output ) ) )
-    {
-      throw new \Exception( sprintf( 'Could not locate "%s" binary.', $bin ) );
-    }
-
-    return $output;
-  }
-
-  protected function getShellExec( $cmd, $default = null )
-  {
-    return ( ( $x = shell_exec( $cmd ) ) && !empty( $x ) ) ? trim( $x ) : $default;
-  }
-
 
   /**
    * Checks if the given string is alphanumeric.
