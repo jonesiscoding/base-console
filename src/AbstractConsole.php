@@ -26,10 +26,10 @@ abstract class AbstractConsole extends Command
   /** @var  IOHelper */
   protected $_io;
 
-  public function initialize(InputInterface $Input, OutputInterface $Output)
+  public function initialize(InputInterface $input, OutputInterface $output)
   {
     // Initialize IO
-    $this->_io = new IOHelper( $Input, $Output, $this->getHelper('question'), $this->getHelper('formatter') );
+    $this->_io = new IOHelper( $input, $output, $this->getHelper('question'), $this->getHelper('formatter') );
   }
 
   /**
