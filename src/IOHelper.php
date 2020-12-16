@@ -69,6 +69,10 @@ class IOHelper
     $this->QuestionHelper = $questionHelper;
     $this->FormatterHelper = $formatterHelper;
 
+    // Changes ERROR to Red text on Clear background
+    $style = new OutputFormatterStyle( 'red' );
+    $Output->getFormatter()->setStyle( 'error', $style );
+
     // Changes MSG to Purple/Magenta
     $style = new OutputFormatterStyle( 'magenta' );
     $Output->getFormatter()->setStyle( 'msg', $style );
